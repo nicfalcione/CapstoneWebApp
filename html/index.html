@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <div class='logo'>
+            <a href = '#'>
+                <img src="VirtualAdvisor.png">
+            </a>
+        </div>
+
+        <nav>
+            <ul>
+                <li><a href="index.html"><b>Home</b></a></li>
+                <li><a href="#"><b>About</b></a></li>
+            </ul>
+        </nav>
+
+        <title>VirtualAdvisor</title>
+
+        <link rel="stylesheet" href="style.css">
+
+        <script language="javascript" type="text/javascript" src="start.js"></script>
+    </head>
+    
+    <body>
+        <ol class="menuForm">
+            <li style="clear:both;">What is your major?
+                <select id="Major">
+                    <option value="Computer Science">Computer Science</option>
+                    <option value="Computer Engineering">Computer Engineering</option>
+                    <option value="Information Science">Information Science</option>
+                    <option value="Information Systems">Information Systems</option>
+                    <option value="Electrical Engineering">Electrical Engineering</option>
+                    <option value="Physics">Physics</option>
+                </select>
+            </li>
+
+            <li style="clear: both;">What Liberal Learning Requirements have you completed?
+
+            </li>
+
+            <li style="clear:both">What is your class standing?
+                <select id="Standings">
+                    <option value="Freshman">Freshman</option>
+                    <option value="Sophomore">Sophomore</option>
+                    <option value="Junior">Junior</option>
+                    <option value="Senior">Senior</option>
+                </select>
+                <button id="updateDetails">Update</button>
+            </li>
+        </ol>
+
+        <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <script 
+        src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+
+        
+       <!--<button onSelectStanding="receivePickList()"></button>-->
+
+        <script>
+            document.getElementById('updateDetails')
+            .addEventListener('click', function() {
+                toastr.success("Your details have been updated");
+            })
+        </script>
+
+    </body>
+</html>
