@@ -25,6 +25,7 @@
         <ol class="menuForm">
             <li style="clear:both;">What is your major?
                 <select id="Major">
+                    <option selected>Choose...</option>
                     <option value="Computer Science">Computer Science</option>
                     <option value="Computer Engineering">Computer Engineering</option>
                     <option value="Information Science">Information Science</option>
@@ -35,17 +36,41 @@
             </li>
 
             <li style="clear: both;">What Liberal Learning Requirements have you completed?
-
+                <ol style="list-style-type: none;">
+                    <li style="clear:both"><input type="checkbox">First-Year Writing Seminar</li>
+                    <li style="clear:both"><input type="checkbox">Second-Year Writing Seminar</li>
+                    <li style="clear:both"><input type="checkbox">Second Language Literacy</li>
+                    <li style="clear:both"><input type="checkbox">Mathematical Literacy I</li>
+                    <li style="clear:both"><input type="checkbox">Mathematical Literacy II</li>
+                    <li style="clear:both"><input type="checkbox">Logical Reasoning</li>
+                    <li style="clear:both"><input type="checkbox">Economic Modeling</li>
+                    <li style="clear:both"><input type="checkbox">Civic & Democratic Engagement</li>
+                    <li style="clear:both"><input type="checkbox">Creative Expressions</li>
+                    <li style="clear:both"><input type="checkbox">Global & Multiultural Perspectives</li>
+                    <li style="clear:both"><input type="checkbox">Investigating the Natural World I</li>
+                    <li style="clear:both"><input type="checkbox">Investigating the Natural World II</li>
+                    <li style="clear:both"><input type="checkbox">Investigating the Natural World Lab</li>
+                    <li style="clear:both"><input type="checkbox">Western Traditions</li>
+                </ol>
             </li>
 
             <li style="clear:both">What is your class standing?
                 <select id="Standings">
+                    <option selected>Choose...</option>
                     <option value="Freshman">Freshman</option>
                     <option value="Sophomore">Sophomore</option>
                     <option value="Junior">Junior</option>
                     <option value="Senior">Senior</option>
                 </select>
                 <button id="updateDetails">Update</button>
+            </li>
+
+            <li style="clear: both;"><input type="checkbox">
+                Frontload major classes if possible?
+            </li>
+
+            <li style="clear:both; list-style-type: none;">
+                <button id="generate">Generate Recommendation</button>
             </li>
         </ol>
 
@@ -61,6 +86,11 @@
             document.getElementById('updateDetails')
             .addEventListener('click', function() {
                 toastr.success("Your details have been updated");
+            })
+
+            document.getElementById("generate")
+            .addEventListener('click', function() {
+                toastr.success("Your recommendation has been generated")
             })
         </script>
 
