@@ -3,6 +3,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <html>
     <head>
+        <link rel="shortcut icon" href="favicon.ico">
+        <link rel="icon" type="image/gif" href="animated_favicon1.gif">
         <div class='logo'>
             <a href = '#'>
                 <img src="VirtualAdvisor.png">
@@ -25,8 +27,25 @@
     
     <body>
         <div class="Split">
-            <ol class="menuForm">
-                <li style="clear:both;">What is your major?
+            
+            <ol class="menuForm" style="list-style-type: none;">
+                <li style="clear: both; font-size: 32px; font-weight: bold;">Customize your Schedule</li>
+                <li style="clear: both; font-size: 10px; font-weight: 700;"><span style="color: red; font-size: 10px;">*</span> = required</li>
+                <li style="clear: both;">What year did you start at CNU?<span style="color: red">*</span>
+                    <select id="yearStarted" onchange="populateMajorClasses()">
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+                </li>
+
+                <li style="clear: both;">What Major classes have you completed?
+                    <div id="MajorCourses"></div>
+                </li>
+
+                <li style="clear:both;">What is your major?<span style="color: red">*</span>
                     <select id="Major">
                         <option selected>Choose...</option>
                         <option value="Computer Science">Computer Science</option>
@@ -38,26 +57,42 @@
                     </select>
                 </li>
 
-                <li style="clear: both;">What Liberal Learning Requirements have you completed?
-                    <ol style="list-style-type: none;">
-                        <li style="clear:both"><input type="checkbox">First-Year Writing Seminar</li>
-                        <li style="clear:both"><input type="checkbox">Second-Year Writing Seminar</li>
-                        <li style="clear:both"><input type="checkbox">Second Language Literacy</li>
-                        <li style="clear:both"><input type="checkbox">Mathematical Literacy I</li>
-                        <li style="clear:both"><input type="checkbox">Mathematical Literacy II</li>
-                        <li style="clear:both"><input type="checkbox">Logical Reasoning</li>
-                        <li style="clear:both"><input type="checkbox">Economic Modeling</li>
-                        <li style="clear:both"><input type="checkbox">Civic & Democratic Engagement</li>
-                        <li style="clear:both"><input type="checkbox">Creative Expressions</li>
-                        <li style="clear:both"><input type="checkbox">Global & Multiultural Perspectives</li>
-                        <li style="clear:both"><input type="checkbox">Investigating the Natural World I</li>
-                        <li style="clear:both"><input type="checkbox">Investigating the Natural World II</li>
-                        <li style="clear:both"><input type="checkbox">Investigating the Natural World Lab</li>
-                        <li style="clear:both"><input type="checkbox">Western Traditions</li>
-                    </ol>
+                <li style="clear: both;">What Liberal Learning Requirements have you completed?</li>
+
+                <li style="clear: both;">
+                    <table>
+                        <tr>
+                            <td><input id="FYWS" type="checkbox">First-Year Writing Seminar</td>
+                            <td><input id="SYWS" type="checkbox">Second-Year Writing Seminar</td>
+                        </tr>
+                        <tr>
+                            <td><input id="SLL"  type="checkbox">Second Language Literacy</td>
+                            <td><input id="MLI"  type="checkbox">Mathematical Literacy I</td>
+                        </tr>
+                        <tr>
+                            <td><input id="MLII" type="checkbox">Mathematical Literacy II</td>
+                            <td><input id="LOGR" type="checkbox">Logical Reasoning</td>
+                        </tr>
+                        <tr>
+                            <td><input id="ECON" type="checkbox">Economic Modeling</td>
+                            <td><input id="CDE"  type="checkbox">Civic & Democratic Engagement</td>
+                        </tr>
+                        <tr>
+                            <td><input id="CREA" type="checkbox">Creative Expressions</td>
+                            <td><input id="GLOB" type="checkbox">Global & Multiultural Perspectives</td>
+                        </tr>
+                        <tr>
+                            <td><input id="INWI" type="checkbox">Investigating the Natural World I</td>
+                            <td><input id="INWT" type="checkbox">Investigating the Natural World II</td>
+                        </tr>
+                        <tr>
+                            <td><input id="INWL" type="checkbox">Investigating the Natural World Lab</td>
+                            <td><input id="WEST" type="checkbox">Western Traditions</td>
+                        </tr>
+                    </table>
                 </li>
 
-                <li style="clear:both">What is your class standing?
+                <li style="clear:both">What is your class standing?<span style="color: red">*</span>
                     <select id="Standings">
                         <option selected>Choose...</option>
                         <option value="Freshman">Freshman</option>
@@ -65,34 +100,40 @@
                         <option value="Junior">Junior</option>
                         <option value="Senior">Senior</option>
                     </select>
-                    <button id="updateDetails">Update</button>
                 </li>
 
-                <li style="clear: both;"><input type="checkbox">
-                    Frontload major classes if possible?
+                <li style="clear: both;">Frontload classes if possible?
+                    <input id="frontload" type="checkbox" onclick="showElement()">   
+                    <select id="frontloadPicklist" style="display: none;">
+                        <option value="AOI">Area of Inquiries</option>
+                        <option value="Major">Major Classes</option>
+                    </select>
+                </li>
+
+                <li style="clear: both;">Max credits desired:<span style="color: red">*</span>
+                    <input id="maxCredits" type="text">
                 </li>
 
                 <li style="clear:both; list-style-type: none;">
-                    <button id="generate">Generate Recommendation</button>
+                    <b class="myButton" id="updateDetails" onclick="updateDetails()">Update</b>
+                    <b class="myButton" id="generate" onclick="generateRecommendationCS()">Generate Recommendation</b>
                 </li>
             </ol>
 
             <div class="Recommendation">
-                <table id="output">
-                    
-                </table>
+                <h1 style="text-align:center; color:white">
+                    Schedule Recommendation
+                </h1>
+                <table id="output" style="font-size: 18px;"></table>
+                <h4 id="creditCountMessage"style="text-align: center; color: white;"></h4>
             </div>
         </div>
-
-        <a href="query.php"><button>Query</button></a>
 
         <script
         src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
         <script 
         src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
-
         
-       <!--<button onSelectStanding="receivePickList()"></button>-->
 
         <script>
             document.getElementById('updateDetails')
