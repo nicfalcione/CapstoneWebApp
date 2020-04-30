@@ -7,7 +7,7 @@ if ($major == "Computer Science") {
     $major = "CS";
 }
 
-$con= new mysqli("", "", "", "");
+$con= new mysqli("","","","");
 // Check connection
 if (mysqli_connect_errno())
 {
